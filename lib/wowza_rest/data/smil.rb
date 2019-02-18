@@ -8,7 +8,7 @@ module WowzaRest
       def initialize(attrs = {})
         keys_reader :smil_streams
         @smil_streams = wrap_array_objects(
-          attrs.delete('smilStreams'), SMILStream
+            attrs.delete('smilStreams'), SMILStream
         )
         super(attrs)
       end
