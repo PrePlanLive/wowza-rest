@@ -21,18 +21,18 @@ module WowzaRest
     def create_streamfile(streamfile_name, streamfile_body)
       apply_streamfile_checks(streamfile_name, streamfile_body)
       connection.request(:post, "/streamfiles/#{streamfile_name}",
-                         body: streamfile_body.to_json)['success']
+                         body: streamfile_body.to_json)
     end
 
     def update_streamfile(streamfile_name, streamfile_body)
       apply_streamfile_checks(streamfile_name, streamfile_body)
       connection.request(:put, "/streamfiles/#{streamfile_name}",
-                         body: streamfile_body.to_json)['success']
+                         body: streamfile_body.to_json)
     end
 
     def delete_streamfile(streamfile_name)
       apply_streamfile_checks(streamfile_name)
-      connection.request(:delete, "/streamfiles/#{streamfile_name}")['success']
+      connection.request(:delete, "/streamfiles/#{streamfile_name}")
     end
 
     def apply_streamfile_checks(streamfile_name, streamfile_body = {})
