@@ -35,6 +35,14 @@ module WowzaRest
       connection.request(:delete, "/streamfiles/#{streamfile_name}")
     end
 
+    def connect_streamfile(streamfile_name, appname)
+      connection.request(:put, "/streamfiles/#{streamfile_name}/actions/connect?connectAppName=#{appname}&appInstance=_definst_&mediaCasterType=rtp")
+    end
+
+    def disconnect_streamfile(streamfile_name, appname)
+      connection.request(:put, "/applications/#{appname}/instances/_definst_/incomingstreams/#{streamfile_name}.stream/actions/disconnectStream")
+    end
+
     def apply_streamfile_checks(streamfile_name, streamfile_body = {})
       if !streamfile_body.is_a?(Hash) && !streamfile_body.is_a?(WowzaRest::Data::StreamFile)
         raise WowzaRest::Errors::InvalidArgumentType,
